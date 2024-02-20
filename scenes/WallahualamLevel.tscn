@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/SnowPlatform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GreenShip.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/GreenShip.gd" type="Script" id=3]
+[ext_resource path="res://scenes/FinishArea.gd" type="Script" id=4]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/WallahualamLevel.gd" type="Script" id=6]
+[ext_resource path="res://assets/normal.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 117.5 )
+
+[node name="WallahualamLevel" type="Node"]
+script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.853333, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="GreenShip" parent="." instance=ExtResource( 2 )]
+position = Vector2( 112, 480 )
+script = ExtResource( 3 )
+rotationSpeed = 3.0
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="SnowPlatform" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 40, 563 )
+
+[node name="SnowPlatform2" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 112, 563 )
+
+[node name="SnowPlatform3" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 184, 563 )
+
+[node name="SnowPlatform4" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 256, 563 )
+
+[node name="SnowPlatform5" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 256, 488 )
+
+[node name="SnowPlatform6" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 256, 416 )
+
+[node name="SnowPlatform7" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 256, 344 )
+
+[node name="SnowPlatform8" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 256, 272 )
+
+[node name="SnowPlatform9" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 480, 323 )
+
+[node name="SnowPlatform10" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 480, 248 )
+
+[node name="SnowPlatform11" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 480, 176 )
+
+[node name="SnowPlatform12" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 480, 104 )
+
+[node name="SnowPlatform13" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 480, 32 )
+
+[node name="SnowPlatform14" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 736, 563 )
+
+[node name="SnowPlatform15" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 736, 488 )
+
+[node name="SnowPlatform16" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 736, 416 )
+
+[node name="SnowPlatform17" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 736, 344 )
+
+[node name="SnowPlatform18" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 736, 272 )
+
+[node name="SnowPlatform19" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 808, 272 )
+
+[node name="SnowPlatform20" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 880, 272 )
+
+[node name="SnowPlatform21" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 952, 272 )
+
+[node name="SnowPlatform22" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 1024, 272 )
+
+[node name="FinishArea" type="Area2D" parent="."]
+position = Vector2( 896, 0 )
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
+position = Vector2( 64, 117.5 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="FinishArea"]
+margin_right = 128.0
+margin_bottom = 237.0
+color = Color( 1, 1, 1, 0.0980392 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[connection signal="body_entered" from="FinishArea" to="FinishArea" method="on_finish_touch"]
+[connection signal="finish" from="FinishArea" to="." method="_on_FinishArea_finish"]
+[connection signal="button_press" from="HUD" to="." method="_on_HUD_button_press"]
